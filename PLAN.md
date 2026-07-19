@@ -1,5 +1,17 @@
 # Conflux Conduit fork — PLAN
 
+> **⚠️ Status: heavy development — not production ready.** This repository is heavy
+> development and is not production ready in any way. The `main` branch currently mirrors
+> the **unchanged upstream** [`cogwheel0/conduit`](https://github.com/cogwheel0/conduit)
+> repository (`v3.4.3+136`), rebranded only by README / AGENTS.md reframing and the new
+> `lib/features/conflux_*/` directories. **`main` does not carry Conflux code.** All
+> Conflux work lives on `dev` and feature branches (currently `chore/conflux-fork-init`
+> and `chore/plan-and-cross-refs`); do not deploy from `main`. Use `dev` (or a pinned
+> feature branch) for any environment, and only in contexts where data loss, downtime,
+> and protocol breakage are acceptable. The sibling backend repo (`Piggidragon/Conflux`)
+> has the same posture — its `main` mirrors unchanged upstream open-webui/open-webui;
+> Conflux work lives on its `dev` + feature branches.
+
 > **Refactored edition companion to [`Piggidragon/Conflux/PLAN-refactored.md`](https://github.com/Piggidragon/Conflux/blob/docs/plan-optimization/PLAN-refactored.md).** This file is the mobile-side roadmap placeholder; the canonical plan-of-record for Conflux (the backend) lives in the backend repo. Cross-references:
 >
 > - Backend compat contract: backend `PLAN-refactored.md` §3.7 + Guardrail 20
