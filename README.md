@@ -1,5 +1,16 @@
 # Conduit (Conflux Conduit fork)
 
+> **⚠️ Status: heavy development — not production ready.** This repository is heavy
+> development and is not production ready in any way. The `main` branch currently mirrors
+> the **unchanged upstream** [`cogwheel0/conduit`](https://github.com/cogwheel0/conduit)
+> repository (`v3.4.3+136`), rebranded only by README / AGENTS.md reframing and the new
+> `lib/features/conflux_*/` directories. **`main` does not carry Conflux code.** All
+> Conflux work lives on `dev` and feature branches; do not deploy from `main`. Use `dev`
+> (or a pinned feature branch) for any environment, and only in contexts where data loss,
+> downtime, and protocol breakage are acceptable. The sibling backend repo
+> (`Piggidragon/Conflux`) has the same posture — its `main` mirrors unchanged upstream
+> open-webui/open-webui.
+
 The native Flutter client for [Conflux](https://github.com/Piggidragon/Conflux) — a
 self-hosted, home-lab rebranded fork of [Open WebUI](https://github.com/open-webui/open-webui)
 that adds the Hermes Agent stack, three-system memory (Honcho + Understory + Qdrant),
