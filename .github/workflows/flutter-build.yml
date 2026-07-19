@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Flutter Build — Pull-request gate for the Conflux Conduit fork.
+# Catches Flutter-side breakage (codegen, analyzer, tests) before merge.
+# Mirrors the local verification order documented in AGENTS.md (pub get →
+# build_runner build → analyze → test) so CI matches the operator's
+# pre-handoff gate.
+# ─────────────────────────────────────────────────────────────────────────────
+name: Flutter Build
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'tool/**'
+      - 'pigeons/**'
+      - 'analysis_options.yaml'
+      - 'l10n.yaml'
+      - '.github/workflows/flutter-build.yml'
+  push:
+    branches: [dev, main]
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'pubspec.yaml'
+      - 'pubspec.lock'
+      - 'tool/**'
+      - 'pigeons/**'
+      - 'analysis_options.yaml'
+      - 'l10n.yaml'
+      - '.github/workflows/flutter-build.yml'
+
+concurrency:
+  group: flutter-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  flutter-verify:
+    name: Flutter (Ubuntu / stable)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Show Flutter + Dart versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Resolve dependencies
+        run: flutter pub get
+
+      - name: Generate Riverpod / Drift / Freezed sources
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: Analyze (non-fatal infos/warnings)
+        run: flutter analyze --no-fatal-warnings --no-fatal-infos
+
+      - name: Unit + widget tests
+        run: flutter test
+
+      # Golden-file tests and integration / device tests are intentionally NOT
+      # in this gate; both require a real Flutter test environment (golden
+      # device driver or running emulator) and are run on demand instead.
+      # Add additional jobs here when those suites are first introduced.
