@@ -6,6 +6,24 @@ The Conflux compat contract for this fork is owned by `../Conflux`/`PLAN.md` §3
 
 ---
 
+## Status: heavy development, not production ready
+
+> **⚠️ This repository is heavy development and is not production ready in any way.** The
+> `main` branch currently mirrors the **unchanged upstream**
+> [`cogwheel0/conduit`](https://github.com/cogwheel0/conduit) repository (`v3.4.3+136`),
+> rebranded only by README / AGENTS.md reframing and the new `lib/features/conflux_*/`
+> directories that this fork introduces. **`main` does not carry Conflux code.** All
+> Conflux work lives on `dev` and feature branches (currently `chore/conflux-fork-init`
+> and `chore/plan-and-cross-refs`); the `main` branch is the **unchanged upstream** and
+> is not deployable as a Conflux-built binary without first merging the fork's PRs.
+> Do not deploy from `main`; use `dev` (or a pinned feature branch) for any environment,
+> and only in contexts where data loss, downtime, and protocol breakage are acceptable.
+> The sibling backend repo (`Piggidragon/Conflux`) has the same posture — its `main`
+> mirrors unchanged upstream open-webui/open-webui; Conflux work lives on its `dev` +
+> feature branches (companion-repos section at the bottom of this file).
+
+---
+
 ## Language: English only
 
 Everything in this repository is in **English**:
