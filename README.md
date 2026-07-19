@@ -1,91 +1,22 @@
-<h1 align="center">Conduit</h1>
+# Conduit (Conflux Conduit fork)
 
-<p align="center">
-  <img
-    src="assets/icons/icon.png"
-    alt="Conduit icon"
-    width="96"
-    height="96"
-  />
-</p>
+The native Flutter client for [Conflux](https://github.com/Piggidragon/Conflux) — a
+self-hosted, home-lab rebranded fork of [Open WebUI](https://github.com/open-webui/open-webui)
+that adds the Hermes Agent stack, three-system memory (Honcho + Understory + Qdrant),
+the LCM context engine, and per-profile isolation. Sits alongside the Conflux Svelte
+web UI as the second frontend; both consume the same Conflux backend via the same
+REST + Socket.IO + Hermes-direct surface.
 
-<p align="center">
-  <strong>The native Open WebUI client for iOS and Android.</strong>
-</p>
+This is the **Conflux Conduit fork**, a maintainer-side adaptation of
+[`cogwheel0/conduit`](https://github.com/cogwheel0/conduit) (GPL-3.0). It ships under
+the Conflux umbrella as the mobile client of Conflux. The two repos evolve together
+— the backend owns the compat contract (see `Piggidragon/Conflux/PLAN.md` §3.7 +
+Guardrail 20), the mobile fork adapts to it.
 
-<p align="center">
-  <img
-    alt="Latest Release"
-    src="https://img.shields.io/github/v/release/cogwheel0/conduit?display_name=tag&color=0A84FF"
-  />
-  <img
-    alt="GitHub all downloads"
-    src="https://img.shields.io/github/downloads/cogwheel0/conduit/total?style=flat-square&label=Downloads&logo=github&color=111827"
-  />
-  <img
-    alt="License: GPL-3.0"
-    src="https://img.shields.io/badge/License-GPL%203.0-16A34A"
-  />
-</p>
+Conduit is an independent client and is not affiliated with Open WebUI Inc. or
+cogwheel0. See [Credits](#credits) for component attributions and the upstream chain.
 
-<p align="center">
-  <a href="https://play.google.com/store/apps/details?id=app.cogwheel.conduit">
-    <img
-      src="docs/store-badges/google.webp"
-      alt="Get it on Google Play"
-      height="56"
-    />
-  </a>
-  <a
-    href="https://apps.apple.com/us/app/conduit-open-webui-client/id6749840287"
-  >
-    <img
-      src="docs/store-badges/apple.webp"
-      alt="Download on the App Store"
-      height="56"
-    />
-  </a>
-</p>
-
-<p align="center">
-  <sub>OSS support and project momentum</sub>
-</p>
-
-<p align="center">
-      <a href="https://vercel.com/blog/vercel-open-source-program-fall-2025-cohort#conduit">
-        <img
-          alt="Vercel OSS Program"
-          src="https://vercel.com/oss/program-badge.svg"
-          height="25"
-        />
-      </a>
-      <br></br>
-      <a href="https://trendshift.io/repositories/15397" target="_blank">
-        <img
-          src="https://trendshift.io/api/badge/repositories/15397"
-          alt="cogwheel0%2Fconduit | Trendshift"
-          height="56"
-        />
-      </a>
-</p>
-
-<p align="center">
-  <a href="#why-conduit">Why Conduit</a> |
-  <a href="#feature-snapshot">Feature Snapshot</a> |
-  <a href="#screenshots">Screenshots</a> |
-  <a href="#quickstart">Quickstart</a> |
-  <a href="#build-from-source">Build from Source</a> |
-  <a href="#architecture">Architecture</a>
-</p>
-<br>
-<p align="center">
-  <img
-    src="https://github.com/user-attachments/assets/8531f859-a2c4-4e61-877e-9885d1413f4e"
-    alt="Conduit demo"
-    width="360"
-  />
-</p>
-<br>
+---
 
 ## Why Conduit
 
@@ -110,6 +41,12 @@ enough for daily use.
 | Privacy | Native secure storage, no third-party analytics or ads, and no developer-operated backend relaying your data |
 | Terminal | Interactive terminal sessions over WebSocket with a file browser, shown only when your server exposes the terminal integration |
 
+The Conflux Conduit fork adds (on top of upstream Conduit): Conflux-branded server
+presets, three-system memory surface entry points (Honcho dashboard, Understory graph
+in chat), per-profile session switching, and alignment with the Conflux profile +
+memory model from `Piggidragon/Conflux/PLAN.md` §6 + §14. Active Conflux feature work is
+documented in this fork's `CHANGELOG.md`.
+
 ## Built for Self-Hosted Reality
 
 - Handles direct Open WebUI sign-in as well as OAuth and SSO providers exposed
@@ -125,65 +62,22 @@ enough for daily use.
   long-running chat reliability.
 - Surfaces optional server capabilities such as notes, channels, web search,
   and image generation only when your Open WebUI deployment exposes them.
-- Can connect directly to OpenAI-compatible APIs—including LM Studio—and
-  native Ollama endpoints. OpenAI-family profiles can use Chat Completions or
+- Can connect directly to OpenAI-compatible APIs — including LM Studio —
+  and native Ollama endpoints. OpenAI-family profiles can use Chat Completions or
   Responses, Bearer or API-key headers, and an optional Azure API version.
   Completion traffic travels from your device to that provider. New chat
   history can use Open WebUI when one is signed in, or remain on this device.
 
-## Assistant Output That Holds Up on Mobile
-
-Conduit renders more than plain chat bubbles. The app includes native Flutter
-surfaces for:
-
-- syntax-highlighted code blocks with copy and preview affordances
-- Mermaid diagrams and Chart.js embeds
-- LaTeX and math rendering
-- expandable reasoning, tool-call, and code-execution sections
-- inline citations, source cards, and follow-up suggestions
-
-## Platform Integrations
-
-- Home screen widgets on iOS and Android with new chat, microphone, camera,
-  photos, and clipboard entry points
-- App quick actions for starting a new chat or jumping straight into voice call
-- iOS App Intents and Shortcuts for opening chat, sending text, URLs, images,
-  and starting a voice call
-- Share-sheet ingestion and clipboard image paste to move content into a prompt
-  without manual file juggling
-
-## Screenshots
-
-| Chat | Models | Navigation | Settings |
-| --- | --- | --- | --- |
-| <img src="docs/screenshots/1.png" alt="Conduit conversation screen" width="200" /> | <img src="docs/screenshots/2.png" alt="Conduit model selection screen" width="200" /> | <img src="docs/screenshots/3.png" alt="Conduit navigation screen" width="200" /> | <img src="docs/screenshots/4.png" alt="Conduit settings screen" width="200" /> |
-
 ## Quickstart
 
-If you just want to use Conduit, install it from the App Store or Google Play,
-then choose either an Open WebUI server or a direct model connection.
+If you just want to use the **upstream Conduit** as a regular user, install it from the
+App Store or Google Play, then follow the upstream
+[`cogwheel0/conduit`](https://github.com/cogwheel0/conduit) README. The Conflux
+Conduit fork is the same codebase adapted for Conflux branding; install
+instructions are unchanged.
 
-For Open WebUI:
-
-1. Launch Conduit and choose Open WebUI.
-2. Enter the base URL for your Open WebUI instance.
-3. Add any required custom headers.
-4. Sign in with username and password, LDAP, JWT, SSO, or proxy auth.
-5. Pick a model and start chatting.
-
-For a direct connection:
-
-1. Launch Conduit and choose Direct connection.
-2. Add an OpenAI-compatible or Ollama profile, including its base URL and any
-   required API key or custom headers.
-3. Test the connection, enable it, and select one of its discovered or manual
-   models.
-4. Choose whether new direct chats should use Open WebUI history when available
-   or remain only on this device. Existing chats keep their current location.
-5. Start chatting. An Open WebUI account is not required.
-
-Features such as channels, notes, web search, image generation, and toggle
-filters appear when they are available on the connected server.
+To build the **Conflux Conduit fork** from source (for example to test against a
+Conflux backend), jump to [Build from Source](#build-from-source).
 
 ## Build from Source
 
@@ -192,14 +86,16 @@ filters appear when they are available on the connected server.
 - A recent Flutter SDK with Dart `3.9` or newer
 - Java 17 for Android builds
 - Android 7.0+ (API 24) or iOS 16.0+
-- An Open WebUI instance, an OpenAI-compatible API, or an Ollama endpoint
+- A Conflux backend (`Piggidragon/Conflux`) running, **or** a vanilla Open WebUI
+  server (upstream Conduit talks to either transparently), **or** an OpenAI-compatible
+  API / Ollama endpoint for direct connections
 - Xcode for iOS builds or Android Studio / Android SDK for Android builds
 
 ### Run locally
 
 ```bash
-git clone --recursive https://github.com/cogwheel0/conduit.git
-cd conduit
+git clone https://github.com/Piggidragon/Conflux-Mobile-App.git
+cd Conflux-Mobile-App
 flutter pub get
 dart run build_runner build
 flutter run -d ios
@@ -207,14 +103,13 @@ flutter run -d ios
 flutter run -d android
 ```
 
-The `--recursive` flag pulls the `openwebui-src` submodule — a vendored Open WebUI checkout used as an API reference during development; the app builds without it.
-
 ### Developer checks
 
 ```bash
 flutter pub get
 dart run build_runner build
 flutter test
+flutter analyze
 ```
 
 ### Release builds
@@ -264,6 +159,8 @@ lib/
     profile/    theme, preferences, and app customization
     prompts/    prompt helpers and prompt variable UI
     tools/      tool integration surfaces
+    hermes/     direct Hermes Agent transport (config, sessions, jobs, runs)
+    conflux_*/  Conflux-specific features (memory surfaces, branded presets)
   shared/       reusable widgets, theme tokens, and task infrastructure
 ```
 
@@ -301,34 +198,65 @@ lib/
   data through developer-operated backend infrastructure.
 - Additional details are documented in [PRIVACY_POLICY.md](PRIVACY_POLICY.md).
 
+## Credits
+
+This fork is derived from the following upstream projects, in order:
+
+- **`cogwheel0/conduit`** — the original Flutter Open WebUI client this fork is built on.
+  Copyright (c) 2024-2026 cogwheel0 and Conduit contributors, **GPL-3.0**.
+  See [`LICENSE`](LICENSE) (verbatim) and the [upstream repository](https://github.com/cogwheel0/conduit).
+- **`open-webui/open-webui`** — the upstream server Conduit connects to.
+  Copyright (c) 2023- Open WebUI Inc., **Open WebUI License**.
+- **`Piggidragon/Conflux`** — the Conflux server this fork is built for. The Conflux
+  rebrand is permitted under the Open WebUI License's ≤50 end-user / rolling 30-day
+  exception because the operator's deployment runs well under that cap. The upstream
+  `LICENSE` / `LICENSE_NOTICE` / `LICENSE_HISTORY` files in the Conflux repo are
+  kept verbatim and unmodified.
+- **Third-party notices:** see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)
+  for asset attributions (Conduit + Conflux icons are derived from upstream sources).
+
+This fork adds Conflux-specific code at `lib/features/conflux_*/` and rebrands the
+visible copy in `README.md` / `lib/l10n/app_en.arb` (and propagated translations).
+No upstream Conduit source is renamed or refactored except where necessary for the
+Conflux compat contract (the ruleset in `Piggidragon/Conflux/PLAN.md` §3.7).
+
+## Disclaimer
+
+This software is provided "as is", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability, fitness
+for a particular purpose, and noninfringement. See [`LICENSE`](LICENSE) for the
+full GPL-3.0 text and additional disclaimer language.
+
+The Conflux Conduit fork is a private, non-commercial home-lab adaptation. It is
+not affiliated with Open WebUI Inc., cogwheel0, or any commercial Open WebUI
+licencee. The Conflux backend that this fork connects to is itself a
+non-commercial rebranded fork; see `Piggidragon/Conflux/README.md` (Disclaimer
+section) for the deployment-bound licence carve-out that lets the operator
+rebrand under the Open WebUI License's ≤50-user exception. **If you fork Conflux
+or this Conduit fork and your deployment exceeds 50 end users over a rolling
+30-day window, you must restore Open WebUI's upstream branding on both repos
+(or obtain a commercial licence from Open WebUI Inc.) — the ≤50-user exception
+is per-deployment, not per-fork.**
+
 ## Contributing
 
-Conduit is actively developed and feedback is welcome.
+This fork is maintained privately. Bug reports and discussion live in the Conflux
+backend repo's issues / discussions until the operator opens up dedicated
+channels here. The upstream Conduit roadmap lives at
+[`cogwheel0/conduit/issues`](https://github.com/cogwheel0/conduit/issues)
+and [`cogwheel0/conduit/discussions`](https://github.com/cogwheel0/conduit/discussions).
 
-- Report bugs in [GitHub Issues](https://github.com/cogwheel0/conduit/issues).
-- Start product and feature discussions in
-  [GitHub Discussions](https://github.com/cogwheel0/conduit/discussions).
-- Share deployment notes, questions, or ideas in
-  [GitHub Discussions](https://github.com/cogwheel0/conduit/discussions).
-
-At the moment, unsolicited pull requests are not the primary contribution path.
-Open an issue or discussion first so changes can line up with the current
-roadmap.
-
-## Enterprise and White-Label
-
-If you need private distribution, internal deployment support, or a custom
-enterprise/white-label build, open a discussion or contact the maintainer at
-[cogwheel@cogwheel.app](mailto:cogwheel@cogwheel.app).
-
-## Support
-
-If Conduit is useful to you, you can support ongoing development through
-[GitHub Sponsors](https://github.com/sponsors/cogwheel0) or
-[Buy Me a Coffee](https://www.buymeacoffee.com/cogwheel0).
+When the operator opens PRs against `dev`, the PR template
+(`.github/pull_request_template.md`) requires a **Test Cases** section listing
+specific, concrete manual test cases — the same convention used in
+`Piggidragon/Conflux`. See this fork's `AGENTS.md` § GitHub workflow for the
+branch / commit / PR rules; they mirror the backend repo's so cross-repo PRs can
+be reviewed in the same cadence.
 
 ## License
 
-Conduit is released under the [GPL-3.0 License](LICENSE).
+This fork is released under the **GPL-3.0 License**, inherited verbatim from
+upstream Conduit. See [`LICENSE`](LICENSE) for the full text and
+[Credits](#credits) for the source chain.
 
 Conduit is an independent client and is not affiliated with Open WebUI.
